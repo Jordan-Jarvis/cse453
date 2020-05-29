@@ -30,14 +30,35 @@ bool checkAuthentication()
 
 /**********************************************************************
 * Get test strings for various functions
+* Type 1 returns tautology attacks
+* Type 2 returns Union Query attacks
+* Type 3 returns Comment attacks
+* Type 4 returns Additional statement attacks
 ***********************************************************************/
-std::vector<std::string> getTestVulnerabilities()
+std::vector<std::string> getTestVulnerabilities(int attackType)
 {
   std::vector<std::string> data;
-  data.push_back("jam';"); // comment attack
-  data.push_back("jam' UNION SELECT ‘a’,NULL,NULL,NULL --"); // union query
-  data.push_back("; rm -R ./"); //additional statement attack
-  data.push_back("Username: Joe, Password: anything' or '1' = '1'");
+  switch (attackType)
+  {
+    case 1: //tautology attacks, pattern goes, username, then pass, then username etc..
+    {
+       data.push_back("Joe"); //username
+       data.push_back("anything' or '1' = '1'"); //pass
+       
+    }
+    case 2: // union query
+    {
+       data.push_back("jam' UNION SELECT ‘a’,NULL,NULL,NULL --"); 
+    }
+    case 3:
+    {
+       data.push_back("jam';"); // comment attack
+    }
+    case 4:
+    {
+       data.push_back("; rm -R ./"); //additional statement attack
+    }
+  }
     // Vulnerabilities: Generate test cases for tautology, 
     // union query, comment and additional statement attacks.
 
