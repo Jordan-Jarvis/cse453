@@ -55,6 +55,35 @@ string weakMitigation(string Value)
 string strongMitigation(string Value)
 {
     Value = weakMitigation(Value);
+    vector<string> array;
+    stringstream ss(Value);
+    string tmp;
+    string sqlArray [] = {
+            "ADD","ALTER","ALL","AND","ANY","AS","ASC","BACKUP DATABASE","BETWEEN","CASE","CHECK",
+            "COLUMN","CONSTRAINT","CREATE","DATABASE","DEFAULT","DELETE","DESC","DISTINCT","DROP","EXEC",
+            "EXISTS","FOREIGN KEY","FROM","FULL OUTER JOIN","GROUP BY","HAVING","IN","INDEX","INNER JOIN",
+            "INSERT INTO","IS NULL","IS NOT NULL","JOIN","LEFT JOIN","LIKE","LIMIT","NOT","NOT NULL","OR",
+            "ORDER BY","OUTER JOIN","PRIMARY","PROCEDURE","RIGHT JOIN","ROWNUM","SELECT","SET","TABLE",
+            "TOP","TRUNCATE TABLE","UNION","UNION ALL","UNIQUE","UPDATE","VALUES","VIEW","WHERE"
+    };
+    while(std::getline(ss, tmp, ' '))
+    {
+        array.push_back(tmp);
+    }
+    for (int i = 0; i < array.size; i++) {
+        for (int j = 0; j < sqlArray.size; j++) {
+            if (array[i] == sqlArray[j]) {
+                for (int k = i; k < array.size; k++) {
+                    array[k] = array[k + 1];
+                }
+            }
+        }
+    }
+    string newVal = "";
+    for (int i = 0; i < array.size; i++) {
+        newVal = newVal + array[i];
+    }
+    Value = newVal;
     // Strong Mitigation: create a function which calls 
     // weak mitigation and adds to it until it is 
     // considered strong mitigation.
