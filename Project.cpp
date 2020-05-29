@@ -45,8 +45,17 @@ std::vector<std::string> getTestVulnerabilities()
 ***********************************************************************/
 string weakMitigation(string Value)
 {
-    // Weak Mitigation: create function to provide weak mitigation
-    return Value;
+    //Weak Mitigation against UNION Query Attack
+    const string MATCH = "UNION";
+    std::size_t found = Value.find(MATCH);
+    if (found!=std::string::npos){
+        //Delete substring after found
+        Value.erase(Value.find(MATCH), Value.length());
+        return Value;
+    } else {
+        return "String doesn't contain a UNION statement";
+    }
+    
 }
 
 /**********************************************************************
