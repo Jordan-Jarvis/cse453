@@ -53,10 +53,13 @@ std::vector<std::string> getTestVulnerabilities(int attackType)
     case 3:
     {
        data.push_back("jam';"); // comment attack
+       data.push_back("jam\";"); // comment attack
+       
     }
     case 4:
     {
        data.push_back("; rm -R ./"); //additional statement attack
+       data.push_back(" && rm -R ./"); //additional statement attack
     }
   }
     // Vulnerabilities: Generate test cases for tautology, 
