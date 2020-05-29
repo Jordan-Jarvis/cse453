@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <sstream>
 using namespace std; 
 
 
@@ -33,7 +34,10 @@ bool checkAuthentication()
 std::vector<std::string> getTestVulnerabilities()
 {
   std::vector<std::string> data;
-  data.push_back("hello");
+  data.push_back("jam';"); // comment attack
+  data.push_back("jam' UNION SELECT ‘a’,NULL,NULL,NULL --"); // union query
+  data.push_back("; rm -R ./"); //additional statement attack
+  data.push_back("Username: Joe, Password: anything' or '1' = '1'");
     // Vulnerabilities: Generate test cases for tautology, 
     // union query, comment and additional statement attacks.
 
@@ -79,17 +83,17 @@ string strongMitigation(string Value)
     {
         array.push_back(tmp);
     }
-    for (int i = 0; i < array.size; i++) {
-        for (int j = 0; j < sqlArray.size; j++) {
+    for (int i = 0; i < array.size(); i++) {
+        for (int j = 0; j < 58; j++) { //58 is the size of sqlArray. sqlArray.size does not work for string arrays.
             if (array[i] == sqlArray[j]) {
-                for (int k = i; k < array.size; k++) {
+                for (int k = i; k < array.size(); k++) {
                     array[k] = array[k + 1];
                 }
             }
         }
     }
     string newVal = "";
-    for (int i = 0; i < array.size; i++) {
+    for (int i = 0; i < array.size(); i++) {
         newVal = newVal + array[i];
     }
     Value = newVal;
