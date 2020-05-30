@@ -8,7 +8,7 @@ using namespace std;
 * Generates a query based on the parameters it receives
 ***********************************************************************/
 string generateQuery(string username, string password) {
-    string statement = "SELECT authenticate FROM users WHERE user='" + username + "' and password='" + password + "';";
+    string statement = "SELECT authenticate FROM users WHERE user='" + username + "' AND password='" + password + "';";
     return statement;
 }
 
@@ -104,7 +104,7 @@ string removeKeyword(string newValue, string match) {
         if (match == " OR ") {
             newValue.replace(newValue.find(match), match.length(), " ");
         } else {
-            newValue.erase(newValue.find(match), match.length() + 1);
+            newValue.erase(newValue.find(match), match.length());
         }
         count = newValue.find(match);
     } while (count != -1);
@@ -160,16 +160,16 @@ string weakMitigation(string Value)
 }
 
 /**********************************************************************
-* Adding 10 test cases for weak mitigation.
+* Adding 6 test cases for weak mitigation.
 ***********************************************************************/
 void weakMitigationTest() {
-    std::string weakMitigationTests[10] = { "SELECT * FROM Users WHERE UserId = 105 OR 1=1;",
+    std::string weakMitigationTests[6] = { "SELECT * FROM Users WHERE UserId = 105 OR 1=1;",
                                             "'SELECT * FROM Users WHERE Name =' + uName + ' AND Pass =' + uPass",
                                             "SELECT * FROM users WHERE username = 'administrator'--' AND password = ''",
                                             "SELECT * FROM products WHERE category = 'Gifts' OR 1=1--' AND released = 1",
                                             "' UNION SELECT username, password FROM users--",
                                             "SELECT * FROM products WHERE category = 'Gifts'--' AND released = 1" };
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < 6; i++) {
         cout << "Before: " << weakMitigationTests[i] << endl
              << "After:  " << weakMitigation(weakMitigationTests[i]) << endl << endl;
     }
