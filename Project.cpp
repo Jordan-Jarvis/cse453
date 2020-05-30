@@ -185,15 +185,44 @@ void weakMitigationTest() {
         //cout << "Before: " << weakMitigationTests[i] << endl
          //    << "After:  " << weakMitigation(weakMitigationTests[i]) << endl << endl;
    // }
-    vector<string> tautology = getTestVulnerabilities(1);
-    cout << "Testing for Tautology attacks.\n\n";
-    for (int i = 0; i < tautology.size(); i = i + 2) // plus two because even values are usernames, odd are passwords
+    vector<string> tests = getTestVulnerabilities(1);
+    cout << "\n\n------Testing for Tautology attacks------\n\n";
+    for (int i = 0; i < tests.size(); i = i + 2) // plus two because even values are usernames, odd are passwords
     {
-      cout << "Before weak mitigation: \n" << generateQuery(tautology[i], tautology[i+1]) << endl;
-      tautology[i] = weakMitigation(tautology[i]);          //username
-      tautology[i + 1] = weakMitigation(tautology[i + 1]);  //password
-      cout << "After weak mitigation: \n" << generateQuery(tautology[i], tautology[i+1]) << endl << endl;;
+      cout << "Before weak mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl;
+      tests[i] = weakMitigation(tests[i]);          //username
+      tests[i + 1] = weakMitigation(tests[i + 1]);  //password
+      cout << "After weak mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl << endl;;
     }
+    cout << "\n----Testing for Union Query attacks-----\n\n";
+    tests = getTestVulnerabilities(2);
+    for (int i = 0; i < tests.size(); i = i + 2) // plus two because even values are usernames, odd are passwords
+    {
+      cout << "Before weak mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl;
+      tests[i] = weakMitigation(tests[i]);          //username
+      tests[i + 1] = weakMitigation(tests[i + 1]);  //password
+      cout << "After weak mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl << endl;;
+    }
+    cout << "\n----Testing for Comment attacks-----\n\n";
+    tests = getTestVulnerabilities(3);
+    for (int i = 0; i < tests.size(); i = i + 2) // plus two because even values are usernames, odd are passwords
+    {
+      cout << "Before weak mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl;
+      tests[i] = weakMitigation(tests[i]);          //username
+      tests[i + 1] = weakMitigation(tests[i + 1]);  //password
+      cout << "After weak mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl << endl;;
+    }
+    cout << "\n----Testing for Additional Statement attacks-----\n\n";
+    tests = getTestVulnerabilities(4);
+    for (int i = 0; i < tests.size(); i = i + 2) // plus two because even values are usernames, odd are passwords
+    {
+      cout << "Before weak mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl;
+      tests[i] = weakMitigation(tests[i]);          //username
+      tests[i + 1] = weakMitigation(tests[i + 1]);  //password
+      cout << "After weak mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl << endl;;
+    }
+
+
 
 }
 
@@ -245,20 +274,64 @@ string strongUnionMitigation(string Value){
     return result;
 }
 
+void strongMitigationTest()
+{
+  vector<string> tests = getTestVulnerabilities(1);
+    cout << "\n\n------Testing for Tautology attacks------\n\n";
+    for (int i = 0; i < tests.size(); i = i + 2) // plus two because even values are usernames, odd are passwords
+    {
+      cout << "Before Strong mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl;
+      tests[i] = strongMitigation(tests[i]);          //username
+      tests[i + 1] = strongMitigation(tests[i + 1]);  //password
+      cout << "After Strong mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl << endl;;
+    }
+    cout << "\n----Testing for Union Query attacks-----\n\n";
+    tests = getTestVulnerabilities(2);
+    for (int i = 0; i < tests.size(); i = i + 2) // plus two because even values are usernames, odd are passwords
+    {
+      cout << "Before Strong mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl;
+      tests[i] = strongMitigation(tests[i]);          //username
+      tests[i + 1] = strongMitigation(tests[i + 1]);  //password
+      cout << "After Strong mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl << endl;;
+    }
+    cout << "\n----Testing for Comment attacks-----\n\n";
+    tests = getTestVulnerabilities(3);
+    for (int i = 0; i < tests.size(); i = i + 2) // plus two because even values are usernames, odd are passwords
+    {
+      cout << "Before Strong mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl;
+      tests[i] = strongMitigation(tests[i]);          //username
+      tests[i + 1] = strongMitigation(tests[i + 1]);  //password
+      cout << "After Strong mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl << endl;;
+    }
+    cout << "\n----Testing for Additional Statement attacks-----\n\n";
+    tests = getTestVulnerabilities(4);
+    for (int i = 0; i < tests.size(); i = i + 2) // plus two because even values are usernames, odd are passwords
+    {
+      cout << "Before Strong mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl;
+      tests[i] = strongMitigation(tests[i]);          //username
+      tests[i + 1] = strongMitigation(tests[i + 1]);  //password
+      cout << "After Strong mitigation: \n" << generateQuery(tests[i], tests[i+1]) << endl << endl;;
+    }
+
+}
+
 /**********************************************************************
 * Runs a series of tests for security sanitization and mitigation.
 ***********************************************************************/
 int main()
 {
     cout << endl << "------------------------------------";
+    cout << endl << "-------Query Generation Tests-------";
+    cout << endl << "------------------------------------\n";
+    runAuthenticationTestCases();
+    cout << endl << "------------------------------------";
     cout << endl << "-------Weak Mitigation Tests--------";
     cout << endl << "------------------------------------\n";
     weakMitigationTest();
     cout << endl << "------------------------------------";
-    cout << endl << "-------Query Generation Tests-------";
+    cout << endl << "------Strong Mitigation Tests-------";
     cout << endl << "------------------------------------\n";
-    runAuthenticationTestCases();
-    
+    strongMitigationTest();
    //Stuff goes here
    return 0;
 }
