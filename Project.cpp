@@ -8,7 +8,7 @@ using namespace std;
 * Generates a query based on the parameters it receives
 ***********************************************************************/
 string generateQuery(string username, string password) {
-    string statement = "SELECT ('" + username + "', '" + password + "') FROM users;";
+    string statement = "SELECT authenticate FROM users WHERE user='" + username + "' and password='" + password + "';";
     return statement;
 }
 
@@ -16,18 +16,18 @@ string generateQuery(string username, string password) {
 * Passes 12 pairs of usernames and passwords to the generator function.
 ***********************************************************************/
 void runAuthenticationTestCases() {
-    cout << "Query generated as: " << generateQuery("user1", "password1") << endl;
-    cout << "Query generated as: " << generateQuery("user2", "password2") << endl;
-    cout << "Query generated as: " << generateQuery("user3", "password3") << endl;
-    cout << "Query generated as: " << generateQuery("user4", "password4") << endl;
-    cout << "Query generated as: " << generateQuery("user5", "password5") << endl;
-    cout << "Query generated as: " << generateQuery("user6", "password6") << endl;
-    cout << "Query generated as: " << generateQuery("user7", "password7") << endl;
-    cout << "Query generated as: " << generateQuery("user8", "password8") << endl;
-    cout << "Query generated as: " << generateQuery("user9", "password9") << endl;
-    cout << "Query generated as: " << generateQuery("user10", "password10") << endl;
-    cout << "Query generated as: " << generateQuery("user11", "password11") << endl;
-    cout << "Query generated as: " << generateQuery("user12", "password12") << endl;
+    cout << "Query generated: " << generateQuery("user1", "password1") << endl;
+    cout << "Query generated: " << generateQuery("user2", "password2") << endl;
+    cout << "Query generated: " << generateQuery("user3", "password3") << endl;
+    cout << "Query generated: " << generateQuery("user4", "password4") << endl;
+    cout << "Query generated: " << generateQuery("user5", "password5") << endl;
+    cout << "Query generated: " << generateQuery("user6", "password6") << endl;
+    cout << "Query generated: " << generateQuery("user7", "password7") << endl;
+    cout << "Query generated: " << generateQuery("user8", "password8") << endl;
+    cout << "Query generated: " << generateQuery("user9", "password9") << endl;
+    cout << "Query generated: " << generateQuery("user10", "password10") << endl;
+    cout << "Query generated: " << generateQuery("user11", "password11") << endl;
+    cout << "Query generated: " << generateQuery("user12", "password12") << endl;
 }
 
 /**********************************************************************
