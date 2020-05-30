@@ -22,10 +22,11 @@ std::vector<std::string> getTestQueries()
 /**********************************************************************
 * Authenticates a user in "SQL" and returns true or false
 ***********************************************************************/
-bool checkAuthentication()
+string checkAuthentication(string username, string password)
 {
+  string returnVal = "SELECT * FROM user_details WHERE userid ='" + username + "' and password ='" + password + "';";
     //Query Generation: Accept two strings, return a single string to check if the user is authenticated. 
-    return false;
+    return returnVal; //SELECT * FROM user_details WHERE userid ='' UNION SELECT * FROM EMP_DETAILS -- ' and password =  'abcd'
 }
 
 /**********************************************************************
@@ -170,6 +171,17 @@ int main()
 {
     string apple = " SELECT OR DESIGN OR APPLE OROR ERROR ; ASDF / -- ' awer '";
     cout << weakMitigation(apple);
+    vector<string> tautologyTests = getTestVulnerabilities(1);
+    vector<string> unionQueryTests = getTestVulnerabilities(2);
+    vector<string> commentTests = getTestVulnerabilities(3);
+    vector<string> additionalStatementTests = getTestVulnerabilities(4);
+    cout << endl << "------------------------------------";
+    cout << endl << "-------Query Generation Tests-------";
+    cout << endl << "------------------------------------";
+    cout << endl << checkAuthentication("Jordan","1234");
+    cout << endl << checkAuthentication("Parker","IMaBeas7");
+    cout << endl << checkAuthentication("Mary","DidYouKnow?");
+    
    //Stuff goes here
    return 0;
 }
