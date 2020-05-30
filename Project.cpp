@@ -74,16 +74,43 @@ std::vector<std::string> getTestVulnerabilities(int attackType)
 string weakMitigation(string Value)
 {
     //Weak Mitigation against UNION Query Attack
-    const string MATCH = "UNION";
-    std::size_t found = Value.find(MATCH);
-    if (found!=std::string::npos){
+    const string matchUnion = "UNION";
+    std::size_t foundUnion = Value.find(matchUnion);
+    if (foundUnion != std::string::npos) {
         //Delete substring after found
-        Value.erase(Value.find(MATCH), Value.length());
-        return Value;
-    } else {
-        return "String doesn't contain a UNION statement";
+        Value.erase(Value.find(matchUnion), Value.length());
     }
-    
+
+    //Weak Mitigation against Tautology Attack
+    const string matchQuote = "'";
+    const string matchOR = "OR";
+    std::size_t foundQuote = Value.find(matchQuote);
+    std::size_t foundOR = Value.find(matchOR);
+    if (foundQuote != std::string::npos) {
+        //Delete substring after found
+        Value.erase(Value.find(matchQuote), Value.length());
+    } else if (foundOR != std::string::npos) {
+        //Delete substring after found
+        Value.erase(Value.find(matchOR), Value.length());
+    }
+
+    //Weak Mitigation against Comment Attack
+    const string matchComment = "--";
+    std::size_t foundComment = Value.find(matchComment);
+    if (foundComment != std::string::npos) {
+        //Delete substring after found
+        Value.erase(Value.find(matchComment), Value.length());
+    }
+
+    //Weak Mitigation against Additional Statement Attack
+    const string matchColon = ";";
+    std::size_t foundColon = Value.find(matchColon);
+    if (foundColon != std::string::npos) {
+        //Delete substring after found
+        Value.erase(Value.find(matchColon), Value.length());
+    }
+ 
+    return Value;
 }
 
 /**********************************************************************
