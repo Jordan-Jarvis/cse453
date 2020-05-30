@@ -16,18 +16,18 @@ string generateQuery(string username, string password) {
 * Passes 12 pairs of usernames and passwords to the generator function.
 ***********************************************************************/
 void runAuthenticationTestCases() {
-    cout << "Query generated: " << generateQuery("user1", "password1") << endl;
-    cout << "Query generated: " << generateQuery("user2", "password2") << endl;
-    cout << "Query generated: " << generateQuery("user3", "password3") << endl;
-    cout << "Query generated: " << generateQuery("user4", "password4") << endl;
-    cout << "Query generated: " << generateQuery("user5", "password5") << endl;
-    cout << "Query generated: " << generateQuery("user6", "password6") << endl;
-    cout << "Query generated: " << generateQuery("user7", "password7") << endl;
-    cout << "Query generated: " << generateQuery("user8", "password8") << endl;
-    cout << "Query generated: " << generateQuery("user9", "password9") << endl;
-    cout << "Query generated: " << generateQuery("user10", "password10") << endl;
-    cout << "Query generated: " << generateQuery("user11", "password11") << endl;
-    cout << "Query generated: " << generateQuery("user12", "password12") << endl;
+    cout << "Query generated: " << generateQuery("alex283", "gReAt") << endl;
+    cout << "Query generated: " << generateQuery("dallin910", "pretty_good") << endl;
+    cout << "Query generated: " << generateQuery("maddie193", "Bopping_") << endl;
+    cout << "Query generated: " << generateQuery("Jordan", "1234") << endl;
+    cout << "Query generated: " << generateQuery("Parker", "IMaBeas7") << endl;
+    cout << "Query generated: " << generateQuery("Mary", "DidYouKnow?") << endl;
+    cout << "Query generated: " << generateQuery("poloski", "eeetieve") << endl;
+    cout << "Query generated: " << generateQuery("64nintendu", "y_comprendo") << endl;
+    cout << "Query generated: " << generateQuery("2pac", "alleyezOnMe") << endl;
+    cout << "Query generated: " << generateQuery("al.ruiz", "elSorteo") << endl;
+    cout << "Query generated: " << generateQuery("j_carvalho", "nemsiquerBRA") << endl;
+    cout << "Query generated: " << generateQuery("nemsluveem44", "muvleite13") << endl;
 }
 
 /**********************************************************************
@@ -203,9 +203,9 @@ int main()
     cout << endl << "-------Query Generation Tests-------";
     cout << endl << "------------------------------------\n";
     runAuthenticationTestCases();
-    cout << endl << checkAuthentication("Jordan","1234");
-    cout << endl << checkAuthentication("Parker","IMaBeas7");
-    cout << endl << checkAuthentication("Mary","DidYouKnow?");
+    // cout << endl << checkAuthentication("Jordan","1234");
+    // cout << endl << checkAuthentication("Parker","IMaBeas7");
+    // cout << endl << checkAuthentication("Mary","DidYouKnow?");
     
    //Stuff goes here
    return 0;
