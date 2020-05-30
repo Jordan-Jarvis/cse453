@@ -332,6 +332,5 @@ int main()
     cout << endl << "------Strong Mitigation Tests-------";
     cout << endl << "------------------------------------\n";
     strongMitigationTest();
-   //Stuff goes here
    return 0;
 }
