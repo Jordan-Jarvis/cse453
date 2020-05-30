@@ -159,7 +159,8 @@ string strongMitigation(string Value)
 ***********************************************************************/
 int main()
 {
-    
+    string apple = " SELECT OR DESIGN OR APPLE OROR ERROR ; / -- ' awer '";
+    cout << weakMitigation(apple);
    //Stuff goes here
    return 0;
 }
