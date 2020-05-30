@@ -95,6 +95,24 @@ std::vector<std::string> getTestVulnerabilities(int attackType)
 }
 
 /**********************************************************************
+* Erase a KEY word if found.
+***********************************************************************/
+string removeKeyword(string newValue, string match) {
+    int count = 1;
+    do
+    {
+        if (match == " OR ") {
+            newValue.replace(newValue.find(match), match.length(), " ");
+        } else {
+            newValue.erase(newValue.find(match), match.length() + 1);
+        }
+        count = newValue.find(match);
+    } while (count != -1);
+    
+    return newValue;
+}
+
+/**********************************************************************
 * Runs weak mitigation on the value passed in and returns it.
 ***********************************************************************/
 string weakMitigation(string Value)
@@ -104,21 +122,22 @@ string weakMitigation(string Value)
     std::size_t foundUnion = Value.find(matchUnion);
     if (foundUnion != std::string::npos) {
         //Delete substring after found
-        Value.erase(Value.find(matchUnion), Value.length());
+        Value = removeKeyword(Value, matchUnion);
     }
 
     //Weak Mitigation against Tautology Attack
     const string matchQuote = "'";
-    const string matchOR = "OR";
+    const string matchOR = " OR ";
     std::size_t foundQuote = Value.find(matchQuote);
     std::size_t foundOR = Value.find(matchOR);
     if (foundQuote != std::string::npos) {
         //Delete substring after found
-        Value.erase(Value.find(matchQuote), Value.length());
+        Value = removeKeyword(Value, matchQuote);
+
     } 
     if (foundOR != std::string::npos) {
         //Delete substring after found
-        Value.erase(Value.find(matchOR), Value.length());
+        Value = removeKeyword(Value, matchOR);
     }
 
     //Weak Mitigation against Comment Attack
@@ -126,7 +145,7 @@ string weakMitigation(string Value)
     std::size_t foundComment = Value.find(matchComment);
     if (foundComment != std::string::npos) {
         //Delete substring after found
-        Value.erase(Value.find(matchComment), Value.length());
+        Value = removeKeyword(Value, matchComment);
     }
 
     //Weak Mitigation against Additional Statement Attack
@@ -134,10 +153,26 @@ string weakMitigation(string Value)
     std::size_t foundColon = Value.find(matchColon);
     if (foundColon != std::string::npos) {
         //Delete substring after found
-        Value.erase(Value.find(matchColon), Value.length());
+        Value = removeKeyword(Value, matchColon);
     }
  
     return Value;
+}
+
+/**********************************************************************
+* Adding 10 test cases for weak mitigation.
+***********************************************************************/
+void weakMitigationTest() {
+    std::string weakMitigationTests[10] = { "SELECT * FROM Users WHERE UserId = 105 OR 1=1;",
+                                            "'SELECT * FROM Users WHERE Name =' + uName + ' AND Pass =' + uPass",
+                                            "SELECT * FROM users WHERE username = 'administrator'--' AND password = ''",
+                                            "SELECT * FROM products WHERE category = 'Gifts' OR 1=1--' AND released = 1",
+                                            "' UNION SELECT username, password FROM users--",
+                                            "SELECT * FROM products WHERE category = 'Gifts'--' AND released = 1" };
+    for (int i = 0; i < 10; i++) {
+        cout << "Before: " << weakMitigationTests[i] << endl
+             << "After:  " << weakMitigation(weakMitigationTests[i]) << endl << endl;
+    }
 }
 
 /**********************************************************************
@@ -193,8 +228,10 @@ string strongUnionMitigation(string Value){
 ***********************************************************************/
 int main()
 {
-    string apple = " SELECT OR DESIGN OR APPLE OROR ERROR ; ASDF / -- ' awer '";
-    cout << weakMitigation(apple);
+    cout << endl << "------------------------------------";
+    cout << endl << "-------Weak Mitigation Tests--------";
+    cout << endl << "------------------------------------\n";
+    weakMitigationTest();
     vector<string> tautologyTests = getTestVulnerabilities(1);
     vector<string> unionQueryTests = getTestVulnerabilities(2);
     vector<string> commentTests = getTestVulnerabilities(3);
