@@ -155,6 +155,13 @@ string strongMitigation(string Value)
     return Value;
 }
 
+string strongUnionMitigation(string Value){
+    string result = "";
+    result = weakMitigation(Value) + "';";
+    
+    return result;
+}
+
 /**********************************************************************
 * Runs a series of tests for security sanitization and mitigation.
 ***********************************************************************/
