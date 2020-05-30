@@ -30,18 +30,6 @@ void runAuthenticationTestCases() {
     cout << "Query generated: " << generateQuery("nemsluveem44", "muvleite13") << endl;
 }
 
-/**********************************************************************
-* Gets test queries
-***********************************************************************/
-std::vector<std::string> getTestQueries()
-{
-  std::vector<std::string> data;
-  data.push_back("hello");
-    // Generate 12 test cases to represent valid input.
-    // Have a function to call all the test cases.
-
-  return data;
-}
 
 /**********************************************************************
 * Authenticates a user in "SQL" and returns true or false
@@ -83,12 +71,12 @@ std::vector<std::string> getTestVulnerabilities(int attackType)
     }
     case 3:
     {
-       data.push_back("jam';"); // comment attack
+       data.push_back("jam' --"); // comment attack
        data.push_back("na"); //pass
-       data.push_back("jam\";"); // comment attack
+       data.push_back("jam\"; --"); // comment attack
        data.push_back("na"); //pass
        data.push_back("Joe");
-       data.push_back("1 or 1=1; #");
+       data.push_back("1 or 1=1; # --");
        break;
     }
     case 4:
@@ -96,7 +84,7 @@ std::vector<std::string> getTestVulnerabilities(int attackType)
       data.push_back("Joe"); //username
        data.push_back("; rm -R ./"); //additional statement attack
        data.push_back("Joe"); //username
-       data.push_back("' -- SELECT * from passwrods;"); //additional statement attack
+       data.push_back("' -- SELECT * from passwords;"); //additional statement attack
        break;
     }
   }
