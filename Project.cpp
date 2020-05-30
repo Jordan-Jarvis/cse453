@@ -4,7 +4,13 @@
 #include <sstream>
 using namespace std; 
 
-
+/**********************************************************************
+* Generates a query based on the parameters it receives
+***********************************************************************/
+string queryGenerator(string username, string password) {
+    string statement = "INSERT INTO users VALUES ('" + username + "', '" + password + "');";
+    return statement;
+}
 
 /**********************************************************************
 * Gets test queries
