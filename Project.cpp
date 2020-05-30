@@ -13,6 +13,24 @@ string queryGenerator(string username, string password) {
 }
 
 /**********************************************************************
+* Passes 12 pairs of usernames and passwords to the generator function.
+***********************************************************************/
+void testCases() {
+    queryGenerator("user1", "password1");
+    queryGenerator("user2", "password2");
+    queryGenerator("user3", "password3");
+    queryGenerator("user4", "password4");
+    queryGenerator("user5", "password5");
+    queryGenerator("user6", "password6");
+    queryGenerator("user7", "password7");
+    queryGenerator("user8", "password8");
+    queryGenerator("user9", "password9");
+    queryGenerator("user10", "password10");
+    queryGenerator("user11", "password11");
+    queryGenerator("user12", "password12");
+}
+
+/**********************************************************************
 * Gets test queries
 ***********************************************************************/
 std::vector<std::string> getTestQueries()
@@ -184,6 +202,7 @@ int main()
     cout << endl << "------------------------------------";
     cout << endl << "-------Query Generation Tests-------";
     cout << endl << "------------------------------------";
+    testCases();
     cout << endl << checkAuthentication("Jordan","1234");
     cout << endl << checkAuthentication("Parker","IMaBeas7");
     cout << endl << checkAuthentication("Mary","DidYouKnow?");
