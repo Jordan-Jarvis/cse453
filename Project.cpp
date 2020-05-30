@@ -69,23 +69,35 @@ std::vector<std::string> getTestVulnerabilities(int attackType)
     {
        data.push_back("Joe"); //username
        data.push_back("anything' or '1' = '1'"); //pass
-       
+       data.push_back("Bob"); //username
+       data.push_back("garbage' or 'x' = 'x'"); //pass
+       break;
     }
     case 2: // union query
     {
-       data.push_back("jam' UNION SELECT ‘a’,NULL,NULL,NULL --"); 
-       data.push_back("hack' UNION SELECT username FROM accounts");
+       data.push_back("Joe"); //username
+       data.push_back("jam' UNION SELECT * from passwords --"); 
+       data.push_back("Bob"); //username
+       data.push_back("hack' UNION SELECT username, password FROM accounts");
+       break;
     }
     case 3:
     {
        data.push_back("jam';"); // comment attack
+       data.push_back("na"); //pass
        data.push_back("jam\";"); // comment attack
-       
+       data.push_back("na"); //pass
+       data.push_back("Joe");
+       data.push_back("1 or 1=1; #");
+       break;
     }
     case 4:
     {
+      data.push_back("Joe"); //username
        data.push_back("; rm -R ./"); //additional statement attack
-       data.push_back(" && rm -R ./"); //additional statement attack
+       data.push_back("Joe"); //username
+       data.push_back("' -- SELECT * from passwrods;"); //additional statement attack
+       break;
     }
   }
     // Vulnerabilities: Generate test cases for tautology, 
@@ -169,10 +181,20 @@ void weakMitigationTest() {
                                             "SELECT * FROM products WHERE category = 'Gifts' OR 1=1--' AND released = 1",
                                             "' UNION SELECT username, password FROM users--",
                                             "SELECT * FROM products WHERE category = 'Gifts'--' AND released = 1" };
-    for (int i = 0; i < 6; i++) {
-        cout << "Before: " << weakMitigationTests[i] << endl
-             << "After:  " << weakMitigation(weakMitigationTests[i]) << endl << endl;
+    //for (int i = 0; i < 6; i++) {
+        //cout << "Before: " << weakMitigationTests[i] << endl
+         //    << "After:  " << weakMitigation(weakMitigationTests[i]) << endl << endl;
+   // }
+    vector<string> tautology = getTestVulnerabilities(1);
+    cout << "Testing for Tautology attacks.\n\n";
+    for (int i = 0; i < tautology.size(); i = i + 2) // plus two because even values are usernames, odd are passwords
+    {
+      cout << "Before weak mitigation: \n" << generateQuery(tautology[i], tautology[i+1]) << endl;
+      tautology[i] = weakMitigation(tautology[i]);          //username
+      tautology[i + 1] = weakMitigation(tautology[i + 1]);  //password
+      cout << "After weak mitigation: \n" << generateQuery(tautology[i], tautology[i+1]) << endl << endl;;
     }
+
 }
 
 /**********************************************************************
@@ -232,17 +254,10 @@ int main()
     cout << endl << "-------Weak Mitigation Tests--------";
     cout << endl << "------------------------------------\n";
     weakMitigationTest();
-    vector<string> tautologyTests = getTestVulnerabilities(1);
-    vector<string> unionQueryTests = getTestVulnerabilities(2);
-    vector<string> commentTests = getTestVulnerabilities(3);
-    vector<string> additionalStatementTests = getTestVulnerabilities(4);
     cout << endl << "------------------------------------";
     cout << endl << "-------Query Generation Tests-------";
     cout << endl << "------------------------------------\n";
     runAuthenticationTestCases();
-    // cout << endl << checkAuthentication("Jordan","1234");
-    // cout << endl << checkAuthentication("Parker","IMaBeas7");
-    // cout << endl << checkAuthentication("Mary","DidYouKnow?");
     
    //Stuff goes here
    return 0;
