@@ -89,7 +89,8 @@ string weakMitigation(string Value)
     if (foundQuote != std::string::npos) {
         //Delete substring after found
         Value.erase(Value.find(matchQuote), Value.length());
-    } else if (foundOR != std::string::npos) {
+    } 
+    if (foundOR != std::string::npos) {
         //Delete substring after found
         Value.erase(Value.find(matchOR), Value.length());
     }
@@ -159,7 +160,7 @@ string strongMitigation(string Value)
 ***********************************************************************/
 int main()
 {
-    string apple = " SELECT OR DESIGN OR APPLE OROR ERROR ; / -- ' awer '";
+    string apple = " SELECT OR DESIGN OR APPLE OROR ERROR ; ASDF / -- ' awer '";
     cout << weakMitigation(apple);
    //Stuff goes here
    return 0;
