@@ -162,16 +162,6 @@ string weakMitigation(string Value)
 * Adding 6 test cases for weak mitigation.
 ***********************************************************************/
 void weakMitigationTest() {
-    std::string weakMitigationTests[6] = { "SELECT * FROM Users WHERE UserId = 105 OR 1=1;",
-                                            "'SELECT * FROM Users WHERE Name =' + uName + ' AND Pass =' + uPass",
-                                            "SELECT * FROM users WHERE username = 'administrator'--' AND password = ''",
-                                            "SELECT * FROM products WHERE category = 'Gifts' OR 1=1--' AND released = 1",
-                                            "' UNION SELECT username, password FROM users--",
-                                            "SELECT * FROM products WHERE category = 'Gifts'--' AND released = 1" };
-    //for (int i = 0; i < 6; i++) {
-        //cout << "Before: " << weakMitigationTests[i] << endl
-         //    << "After:  " << weakMitigation(weakMitigationTests[i]) << endl << endl;
-   // }
     vector<string> tests = getTestVulnerabilities(1);
     cout << "\n\n------Testing for Tautology attacks------\n\n";
     for (int i = 0; i < tests.size(); i = i + 2) // plus two because even values are usernames, odd are passwords
