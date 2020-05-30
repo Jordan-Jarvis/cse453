@@ -31,19 +31,6 @@ void runAuthenticationTestCases() {
 }
 
 /**********************************************************************
-* Gets test queries
-***********************************************************************/
-std::vector<std::string> getTestQueries()
-{
-  std::vector<std::string> data;
-  data.push_back("hello");
-    // Generate 12 test cases to represent valid input.
-    // Have a function to call all the test cases.
-
-  return data;
-}
-
-/**********************************************************************
 * Authenticates a user in "SQL" and returns true or false
 ***********************************************************************/
 string checkAuthentication(string username, string password)
@@ -83,9 +70,9 @@ std::vector<std::string> getTestVulnerabilities(int attackType)
     }
     case 3:
     {
-       data.push_back("jam';"); // comment attack
+       data.push_back("jam'; --"); // comment attack
        data.push_back("na"); //pass
-       data.push_back("jam\";"); // comment attack
+       data.push_back("jam\"; --"); // comment attack
        data.push_back("na"); //pass
        data.push_back("Joe");
        data.push_back("1 or 1=1; #");
@@ -315,22 +302,70 @@ void strongMitigationTest()
 
 }
 
+void Test() {
+  cout << endl << "------------------------------------";
+  cout << endl << "-------Query Generation Tests-------";
+  cout << endl << "------------------------------------\n";
+  runAuthenticationTestCases();
+  cout << endl << "------------------------------------";
+  cout << endl << "-------Weak Mitigation Tests--------";
+  cout << endl << "------------------------------------\n";
+  weakMitigationTest();
+  cout << endl << "------------------------------------";
+  cout << endl << "------Strong Mitigation Tests-------";
+  cout << endl << "------------------------------------\n";
+  strongMitigationTest();
+}
+
 /**********************************************************************
 * Runs a series of tests for security sanitization and mitigation.
 ***********************************************************************/
 int main()
 {
-    cout << endl << "------------------------------------";
-    cout << endl << "-------Query Generation Tests-------";
-    cout << endl << "------------------------------------\n";
-    runAuthenticationTestCases();
-    cout << endl << "------------------------------------";
-    cout << endl << "-------Weak Mitigation Tests--------";
-    cout << endl << "------------------------------------\n";
-    weakMitigationTest();
-    cout << endl << "------------------------------------";
-    cout << endl << "------Strong Mitigation Tests-------";
-    cout << endl << "------------------------------------\n";
-    strongMitigationTest();
+  std::string input;
+    while(true)
+    {
+  // User Interface
+  std::cout << "Select a Mitigation to run. \n ------------- \n";
+  std::cout << " 1 : Authentication test cases\n";
+  std::cout << " 2 : Weak Mitigation\n";
+  std::cout << " 3 : Strong Mitigation\n";
+  std::cout << " 4 : Run all tests\n";
+  std::cout << "exit : exit\n";
+  std::cout << "--------------\n Please enter a value and press enter\n >> ";
+  string username;
+  string password;
+  std::cin >> input;
+  
+    if (input == "exit") {
+      break;
+    } else if (input == "1") {
+      cout << endl << "------------------------------------";
+      cout << endl << "-------Query Generation Tests-------";
+      cout << endl << "------------------------------------\n";
+      runAuthenticationTestCases();
+      cout << endl;
+    }
+    else if (input == "2")
+    {
+      cout << endl << "------------------------------------";
+      cout << endl << "-------Weak Mitigation Tests--------";
+      cout << endl << "------------------------------------\n";
+      weakMitigationTest();
+    } 
+    else if (input == "3") {
+      cout << endl << "------------------------------------";
+      cout << endl << "------Strong Mitigation Tests-------";
+      cout << endl << "------------------------------------\n";
+      strongMitigationTest();
+    } 
+    else if (input == "4") {
+      Test();
+    }
+    else {
+      std::cout << "\n Invalid input.\n";
+        input = ' ';
+      }
+  }
    return 0;
 }
