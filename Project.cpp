@@ -49,6 +49,7 @@ std::vector<std::string> getTestVulnerabilities(int attackType)
     case 2: // union query
     {
        data.push_back("jam' UNION SELECT ‘a’,NULL,NULL,NULL --"); 
+       data.push_back("hack' UNION SELECT username FROM accounts");
     }
     case 3:
     {
