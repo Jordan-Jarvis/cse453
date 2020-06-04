@@ -103,14 +103,17 @@ void two(long number)              // 345678
     std::stringstream stream;
     long ll = 0;
     std::ostringstream oss;
-   for (long i = 124; i >= -4; i--)   // You may need to change 24 to another number
+   for (long i = 124; i >= -40; i--)   // You may need to change 24 to another number
    {
 
             
-
+            
            cout << std::right << setw(2) << i << "  " << setw(13) << &bow + i << std::right << setw(20) <<  *(&bow + i) << setw(12) << displayCharArray(&text[i * 8])  << endl;
             
-            
+            if (*(&bow + i) == 123456)
+            {
+               *(&bow + i) = 654321;
+            }
      // displayCharArray(*(&pChar + i + bow));
 
       ////////////////////////////////////////////////
@@ -126,7 +129,7 @@ void two(long number)              // 345678
    text[132] = 'g';
    text[133] = 'e';
    text[134] = 'd';
-   *(&bow + 121) = 654321;
+   //*(&bow + 122) = 654321;
    ////////////////////////////////////////////////
    // Insert code here to change the variables in main()
                                                                                 
