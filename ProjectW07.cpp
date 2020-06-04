@@ -1,6 +1,9 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstdlib>
 using namespace std;
 
 void one(long number);
@@ -98,10 +101,17 @@ void two(long number)              // 345678
     cout << pLong<< endl;
     cout << &pChar << endl;
     std::stringstream stream;
-   for (long i = 24; i >= -4; i--)   // You may need to change 24 to another number
+    long ll = 0;
+    std::ostringstream oss;
+   for (long i = 124; i >= -4; i--)   // You may need to change 24 to another number
    {
 
-           cout << &pLong + i <<"\t" << *(&pLong + i) << endl;
+            
+
+           cout << std::right << setw(2) << i << "  " << setw(13) << &bow + i << std::right << setw(20) <<  *(&bow + i) << setw(12) << displayCharArray(&text[i * 8])  << endl;
+            
+            
+     // displayCharArray(*(&pChar + i + bow));
 
       ////////////////////////////////////////////////
       // Insert code here to display the callstack
@@ -109,7 +119,14 @@ void two(long number)              // 345678
       //
       ////////////////////////////////////////////////
    }
-
+   text[128] = 'C';
+   text[129] = 'h';
+   text[130] = 'a';
+   text[131] = 'n';
+   text[132] = 'g';
+   text[133] = 'e';
+   text[134] = 'd';
+   *(&bow + 121) = 654321;
    ////////////////////////////////////////////////
    // Insert code here to change the variables in main()
                                                                                 
