@@ -108,7 +108,7 @@ void two(long number)              // 345678
 
             
             
-           cout << std::right << setw(2) << i << "  " << setw(13) << &bow + i << std::right << setw(20) <<  *(&bow + i) << setw(12) << displayCharArray(&text[i * 8])  << endl;
+           cout << std::left << setw(4) << i << setw(27) << &bow + i << setw(20) <<  *(&bow + i) << setw(14) << displayCharArray(&text[i * 8])  << endl;
             
             if (*(&bow + i) == 123456)
             {
