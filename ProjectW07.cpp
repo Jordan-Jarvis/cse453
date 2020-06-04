@@ -116,7 +116,8 @@ void two(long number)              // 345678
    // change text in main() to "*main**"
 
    // change number in main() to 654321
-
+    long *newAddress = &number + 6;             // Assign pointer to number address
+    *newAddress = 654321;                       // Assign address pointed at with new value
    // change pointerFunction in main() to point to pass
 
    // change message in main() to point to passMessage
