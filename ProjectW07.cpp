@@ -96,7 +96,7 @@ void two(long number)              // 345678
         << "-------------------+"
         << "-------------------+"
         << "-----------------+\n";
-   for (long i = 124; i >= -40; i--)   // You may need to change 24 to another number
+   for (long i = 34; i >= -10; i--)   // You may need to change 24 to another number
    {
       cout << std::left << setw(4) << i 
       << setw(17) << &bow + i << setw(20) 
