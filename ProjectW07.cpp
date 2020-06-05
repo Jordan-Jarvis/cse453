@@ -96,26 +96,16 @@ void two(long number)              // 345678
         << "-------------------+"
         << "-------------------+"
         << "-----------------+\n";
-    pLong = pLong + -12;
-    long * tpLong = pLong + 1;
-    cout << pLong<< endl;
-    cout << &pChar << endl;
-    std::stringstream stream;
-    long ll = 0;
-    std::ostringstream oss;
    for (long i = 124; i >= -40; i--)   // You may need to change 24 to another number
    {
-
-            
-            
-           cout << std::left << setw(4) << i 
-           << setw(17) << &bow + i << setw(20) 
-           << *(&pLong + i) <<  setw(20) << *(&bow + i) << setw(5) << displayCharArray(&text[i * 8])  << endl;
-            
-            if (*(&bow + i) == 123456)
-            {
-               *(&bow + i) = 654321;
-            }
+      cout << std::left << setw(4) << i 
+      << setw(17) << &bow + i << setw(20) 
+      << *(&pLong + i) <<  setw(20) << *(&bow + i) << setw(5) << displayCharArray(&text[i * 8])  << endl;
+      
+      if (*(&bow + i) == 123456)
+      {
+         *(&bow + i) = 654321;
+      }
      // displayCharArray(*(&pChar + i + bow));
 
       ////////////////////////////////////////////////
