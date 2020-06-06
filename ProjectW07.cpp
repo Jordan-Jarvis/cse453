@@ -109,7 +109,6 @@ void two(long number)              // 345678
       {
          *(&bow + i) = 654321;
       }
-      // displayCharArray(*(&pChar + i + bow));
 
       //
       ////////////////////////////////////////////////
@@ -121,7 +120,6 @@ void two(long number)              // 345678
    text[132] = 'g';
    text[133] = 'e';
    text[134] = 'd';
-   //*(&bow + 122) = 654321;
    ////////////////////////////////////////////////
    // Insert code here to change the variables in main()
                                                                                 
@@ -131,10 +129,18 @@ void two(long number)              // 345678
     long *newAddress = &number + 67;             // Assign pointer to number address
     *newAddress = 654321;                       // Assign address pointed at with new value
    // change pointerFunction in main() to point to pass
-
+   void (*fail)() = pass;
    // change message in main() to point to passMessage
-      // const char *newMessage = passMessage;
-      // *newMessage = passMessage;
+      
+      // cout << endl << *(&pChar + 22) << endl;
+      // cout << endl << (&pChar + 22) << endl;
+      const char *newMessage = *(&pChar + 24);
+      cout << endl << *(&newMessage) << endl;
+      *(&newMessage) = *(&passMessage);
+      //failMessage -> ;
+      cout << *(&newMessage) << endl;
+      //cout << endl << newMessage << endl;
+
    //
    ////////////////////////////////////////////////
 }
