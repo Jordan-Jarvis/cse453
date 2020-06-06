@@ -105,10 +105,6 @@ void two(long number)              // 345678
       << setw(17) << &bow + i << setw(20) 
       << *(&pLong + i) <<  setw(20) << *(&bow + i) << setw(5) << displayCharArray(&text[i * 8])  << endl;
       
-      if (*(&bow + i) == 123456)
-      {
-         *(&bow + i) = 654321;
-      }
 
       //
       ////////////////////////////////////////////////
@@ -131,7 +127,7 @@ void two(long number)              // 345678
    // change pointerFunction in main() to point to pass
    void (*fail)() = pass;
    // change message in main() to point to passMessage
-      
+       *(&bow + 22) = 654321;
       cout << endl << *(&pChar + 22) << endl;
       cout << endl << *(&passMessage + 1) << endl;
       // cout << endl << (&pChar + 22) << endl;
