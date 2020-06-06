@@ -98,6 +98,9 @@ void two(long number)              // 345678
         << "-----------------+\n";
    for (long i = 34; i >= -10; i--)   // You may need to change 24 to another number
    {
+      ////////////////////////////////////////////////
+      // Insert code here to display the callstack
+      
       cout << std::left << setw(4) << i 
       << setw(17) << &bow + i << setw(20) 
       << *(&pLong + i) <<  setw(20) << *(&bow + i) << setw(5) << displayCharArray(&text[i * 8])  << endl;
@@ -106,11 +109,8 @@ void two(long number)              // 345678
       {
          *(&bow + i) = 654321;
       }
-     // displayCharArray(*(&pChar + i + bow));
+      // displayCharArray(*(&pChar + i + bow));
 
-      ////////////////////////////////////////////////
-      // Insert code here to display the callstack
-      
       //
       ////////////////////////////////////////////////
    }
@@ -133,7 +133,8 @@ void two(long number)              // 345678
    // change pointerFunction in main() to point to pass
 
    // change message in main() to point to passMessage
-
+      // const char *newMessage = passMessage;
+      // *newMessage = passMessage;
    //
    ////////////////////////////////////////////////
 }
