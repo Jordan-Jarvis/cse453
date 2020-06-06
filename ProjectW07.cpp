@@ -126,19 +126,19 @@ void two(long number)              // 345678
    // change text in main() to "*main**"
 
    // change number in main() to 654321
-    long *newAddress = &number + 67;             // Assign pointer to number address
-    *newAddress = 654321;                       // Assign address pointed at with new value
+    //long *newAddress = &number + 67;             // Assign pointer to number address
+    //*newAddress = 654321;                       // Assign address pointed at with new value
    // change pointerFunction in main() to point to pass
    void (*fail)() = pass;
    // change message in main() to point to passMessage
       
-      // cout << endl << *(&pChar + 22) << endl;
+      cout << endl << *(&pChar + 22) << endl;
+      cout << endl << *(&passMessage + 1) << endl;
       // cout << endl << (&pChar + 22) << endl;
-      const char *newMessage = *(&pChar + 24);
-      cout << endl << *(&newMessage) << endl;
-      *(&newMessage) = *(&passMessage);
-      //failMessage -> ;
-      cout << *(&newMessage) << endl;
+
+      *(&pChar + 22) = *(&pChar + 22) - 3;
+
+
       //cout << endl << newMessage << endl;
 
    //
