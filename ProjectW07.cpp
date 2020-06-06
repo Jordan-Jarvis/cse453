@@ -126,7 +126,9 @@ void two(long number)              // 345678
 
    // change pointerFunction in main() to point to pass
    
-   void (*fail)() = pass;
+   long *p;
+   for (p=(long*)&p; *p != (long)fail; p++);
+   *p = (long)pass;
    
    // change message in main() to point to passMessage
 
