@@ -110,31 +110,27 @@ void two(long number)              // 345678
       ////////////////////////////////////////////////
    }
 
-   text[129] = 'm';
-   text[130] = 'a';
-   text[131] = 'i';
-   text[132] = 'n';
-
    ////////////////////////////////////////////////
    // Insert code here to change the variables in main()
                                                                                 
    // change text in main() to "*main**"
-
+   
+   text[129] = 'm';
+   text[130] = 'a';
+   text[131] = 'i';
+   text[132] = 'n';
+   
    // change number in main() to 654321
-    //long *newAddress = &number + 67;             // Assign pointer to number address
-    //*newAddress = 654321;                       // Assign address pointed at with new value
+   
+   *(&bow + 22) = 654321;
+
    // change pointerFunction in main() to point to pass
+   
    void (*fail)() = pass;
+   
    // change message in main() to point to passMessage
-       *(&bow + 22) = 654321;
-      cout << endl << *(&pChar + 22) << endl;
-      cout << endl << *(&passMessage + 1) << endl;
-      // cout << endl << (&pChar + 22) << endl;
 
-      *(&pChar + 22) = *(&pChar + 22) - 3;
-
-
-      //cout << endl << newMessage << endl;
+   *(&pChar + 22) = *(&pChar + 22) - 3;
 
    //
    ////////////////////////////////////////////////
