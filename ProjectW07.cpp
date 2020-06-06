@@ -109,13 +109,12 @@ void two(long number)              // 345678
       //
       ////////////////////////////////////////////////
    }
-   text[128] = 'C';
-   text[129] = 'h';
+
+   text[129] = 'm';
    text[130] = 'a';
-   text[131] = 'n';
-   text[132] = 'g';
-   text[133] = 'e';
-   text[134] = 'd';
+   text[131] = 'i';
+   text[132] = 'n';
+
    ////////////////////////////////////////////////
    // Insert code here to change the variables in main()
                                                                                 
