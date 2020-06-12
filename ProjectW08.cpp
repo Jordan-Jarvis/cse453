@@ -2,6 +2,50 @@
 #include <iostream>
 using namespace std;
 
+/*************************************
+ * ARRAY VULNERABILTY
+ * 1. There must be an array and an array index variable
+ * 2. The array index variable must be reachable through external input.
+ * 3. There must not be bounds checking on the array index variable.
+ ****************************************/
+void arrayVulnerability(int index)
+{
+    cout << "\n The index location entered is: " << index << endl;
+    int array[4];
+    int authenticated = 0;
+    array[index] = 1;
+    cout << "\n  The user is ";
+    if(!authenticated)
+    {
+        cout << "not ";
+    }
+    cout << "authenticated.\n";
+    
+}
+
+/**************************************
+ * ARRAY WORKING
+ * Call arrayVulnerability() in a way that does
+ * not yield unexpected behavior
+ *************************************/
+void arrayWorking()
+{
+   arrayVulnerability(2);
+}
+
+/**************************************
+ * ARRAY EXPLOIT
+ * 1. The attacker provides an array index value outside the expected range
+ * 2. The attacker must be able to provide input or redirect
+ *    existing input into the array at the index he provided
+ * 3. The injected value must alter program state in a way
+ *    that is desirable to the attacker
+ *************************************/
+void arrayExploit()
+{
+   arrayVulnerability(-1);
+}
+
 /*******************************************
  * If there is no overflow, the function
  * places the sum of a+b in “result” and
@@ -60,6 +104,9 @@ void arcVulnerability(){
 int main()
 {
 
+    /* Array Index */
+    arrayWorking();
+    arrayExploit();
     /* INTEGER OVERFLOW */
 
     int *res = new int[(sizeof(int))];
