@@ -46,6 +46,16 @@ public:
     }
 };
 
+void arcVulnerability(){
+    int numbers[5];
+    void (* conversion)() = arcVulnerability;
+    
+    cout << "Enter a 5 digit number: ";
+    cin >> numbers[5];
+    
+    conversion();
+}
+
 // Driver code
 int main()
 {
