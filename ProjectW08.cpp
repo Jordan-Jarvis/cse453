@@ -119,6 +119,40 @@ void arcExploit() {
     arcVulnerability(2500000000000);
 }
 
+
+/*****************************************
+ *Stack Smashing - INCOMPLETE
+ *1. There must be a buffer on the stack.
+ *2. The buffer must be reachable from an external input.
+ *3. The mechanism to fill the buffer from the external input must not correctlly check for the  buffer size.
+ *4. THe buffer must be overrun.
+ *******************************************/
+
+void stackVulnerability(string words) {
+    
+    char phrase[5];
+    strcpy(<#char *__dst#>, <#const char *__src#>)
+    
+    if () {
+        cout << "The stack isn't vulnerable." << endl;
+        cout << phrase[0] << endl;
+    } else {
+        cout << "The stack is vulnerable" << endl;
+        cout << phrase[0] << endl;
+
+    }
+}
+
+void stackWorking() {
+    char *name = "Fort";
+    stackVulnerability(name);
+}
+
+void stackExploit() {
+    char *name = "Mackenzie";
+    stackVulnerability(name);
+}
+
 // Driver code
 int main()
 {
@@ -145,9 +179,14 @@ int main()
     A* b = new B();
     b->foo();
     
-    //ARC Vulnerability
+    //ARC Vulnerability Driver
     arcWorking();
     arcExploit();
+    
+    //Stack Smashing Driver
+    stackWorking();
+    stackExploit();
+
 
     return 0;
 }
