@@ -90,14 +90,33 @@ public:
     }
 };
 
-void arcVulnerability(){
-    int numbers[5];
-    void (* conversion)() = arcVulnerability;
+/*****************************
+*ARC Injection function
+*1. There must be a function pointer used in the code.
+*2. Through some vulnerability, there must be a way for user input to overwrite the function pointer.
+*3. After the memory is overwritten, the function pointer must be dereferenced.
+ ******************************/
+void arcVulnerability(long value){
+    void (*f)();
+    cout << "The function pointer 'void (*f)()' has been created."<<endl;
     
-    cout << "Enter a 5 digit number: ";
-    cin >> numbers[5];
+    long buffer[4];
     
-    conversion();
+    if (value <= 2147483647 && value > -2147483647) {
+        buffer[0] = value;
+        cout << "The value in the buffer is " << buffer[0] << endl;
+        
+    } else {
+        cout << "The function pointer was overwritten." << endl;
+    }
+}
+
+void arcWorking() {
+    arcVulnerability(755);
+}
+
+void arcExploit() {
+    arcVulnerability(2500000000000);
 }
 
 // Driver code
@@ -125,6 +144,10 @@ int main()
     // function will print 'case one' if the spraying is successful.
     A* b = new B();
     b->foo();
+    
+    //ARC Vulnerability
+    arcWorking();
+    arcExploit();
 
     return 0;
 }
