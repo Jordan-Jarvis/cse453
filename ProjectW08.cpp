@@ -276,20 +276,6 @@ int main()
                 cout << "Invalid input.\n";
         }
 
-     /* INTEGER OVERFLOW */
-        
-
-        /* V_TABLE SPRAYING */
-        
-        
-        //ARC Vulnerability Driver
-        
-        
-        //Stack Smashing Driver
-        
-
-        
-
     }
     
     return 0;
