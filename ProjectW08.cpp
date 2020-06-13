@@ -131,6 +131,7 @@ void arcExploit() {
 void stackVulnerability(string words) {
     
     char phrase[5];
+    /* Commenting out to be able to compile
     strcpy(<#char *__dst#>, <#const char *__src#>)
     
     if () {
@@ -141,6 +142,7 @@ void stackVulnerability(string words) {
         cout << phrase[0] << endl;
 
     }
+    */
 }
 
 void stackWorking() {
