@@ -198,7 +198,7 @@ int main()
     char input;
     while (true)
     {
-        cout << "\nPlease select an option and press enter.\n";
+        cout << "\n\nPlease select an option and press enter.\n";
         cout << " 1 - Array Vulnerability\n";
         cout << " 2 - IPointer Subterfuge\n";
         cout << " 3 - ARC Injection\n";
@@ -207,65 +207,88 @@ int main()
         cout << " 6 - Heap Spraying\n";
         cout << " 7 - Integer Overflow\n";
         cout << " 8 - ANSI-Unicode Conversion\n";
+        cout << " 9 - Exit\n";
         cout << " Input:";
         cin >> input;
         switch (input)
         {
             case '1':
-            cout << "\n----------------------------------";
-            cout << "\n--------Array Vulnerability-------";
-            cout << "\n----------------------------------\n";
-            /* Array Index */
-            arrayWorking();
-            arrayExploit();
-            cout << "If the user is authenticated then the exploit worked.";
-            
+                cout << "\n----------------------------------";
+                cout << "\n--------Array Vulnerability-------";
+                cout << "\n----------------------------------\n";
+                /* Array Index */
+                arrayWorking();
+                arrayExploit();
+                cout << "If the user is authenticated then the exploit worked.";
+                break;
+            case '2':
+                //pointer subterfuge goes here
+                break;
+            case '3':
+                cout << "\n----------------------------------";
+                cout << "\n--------ARC Vulnerability---------";
+                cout << "\n----------------------------------\n";
+                arcWorking();
+                arcExploit();
+                break;
+
+            case '4':
+                cout << "\n----------------------------------";
+                cout << "\n--------V_Table Spraying----------";
+                cout << "\n----------------------------------\n";
+                // allocate memory on the heap for an object of class 'B',
+                // then point to class A with it. The virtual function in
+                // class 'A' will then be pointed to from that object. The
+                // function will print 'case one' if the spraying is successful.
+               // A* b = new B();
+               // b->foo();
+                break;
+            case '5':
+                cout << "\n----------------------------------";
+                cout << "\n--------Stack Smashing------------";
+                cout << "\n----------------------------------\n";
+                stackWorking();
+                stackExploit();
+                break;
+            case '6':
+                // heap spraying goes here
+                break;
+            case '7':
+                cout << "\n----------------------------------";
+                cout << "\n--------Integer Overflow----------";
+                cout << "\n----------------------------------\n";
+                //int *res = new int[(sizeof(int))];
+                //int x = 2147483640;
+                //int y = 10;
+                // Print integer overflow function return value: -1 = overflow, 0 = no overflow
+                //cout<<addOvf(res, x, y);
+                break;
+            case '8':
+                cout << "\n----------------------------------";
+                cout << "\n--------Unicode_ANSI--------------";
+                cout << "\n----------------------------------\n";
+                unicodeExploit();
+                unicodeWorking();
+                break;
+            case '9':
+                return 0;
+            default:
+                cout << "Invalid input.\n";
         }
+
      /* INTEGER OVERFLOW */
-        cout << "\n----------------------------------";
-        cout << "\n--------Integer Overflow----------";
-        cout << "\n----------------------------------\n";
-
-
-
-        int *res = new int[(sizeof(int))];
-        int x = 2147483640;
-        int y = 10;
-
-        // Print integer overflow function return value: -1 = overflow, 0 = no overflow
-        cout<<addOvf(res, x, y);
-
+        
 
         /* V_TABLE SPRAYING */
-        cout << "\n----------------------------------";
-        cout << "\n--------V_Table Spraying----------";
-        cout << "\n----------------------------------\n";
-        // allocate memory on the heap for an object of class 'B',
-        // then point to class A with it. The virtual function in
-        // class 'A' will then be pointed to from that object. The
-        // function will print 'case one' if the spraying is successful.
-        A* b = new B();
-        b->foo();
+        
         
         //ARC Vulnerability Driver
-        cout << "\n----------------------------------";
-        cout << "\n--------ARC Vulnerability---------";
-        cout << "\n----------------------------------\n";
-        arcWorking();
-        arcExploit();
+        
         
         //Stack Smashing Driver
-        cout << "\n----------------------------------";
-        cout << "\n--------Stack Smashing------------";
-        cout << "\n----------------------------------\n";
-        stackWorking();
-        stackExploit();
+        
 
-        cout << "\n----------------------------------";
-        cout << "\n--------Unicode_ANSI--------------";
-        cout << "\n----------------------------------\n";
-        unicodeExploit();
-        unicodeWorking();
+        
 
     }
     
