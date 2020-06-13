@@ -10,17 +10,18 @@ using namespace std;
  ****************************************/
 void arrayVulnerability(int index)
 {
-    cout << "\n The index location entered is: " << index << endl;
+    cout << "\nThe array size is 4.";
+    cout << "\nThe index location entered is: " << index << endl;
     int array[4];
     int authenticated = 0;
     array[index] = 1;
-    cout << "\n  The user is ";
+    cout << "The user is ";
     if(!authenticated)
     {
         cout << "not ";
     }
-    cout << "authenticated.\n";
-    
+    cout << "authenticated.\n\n";
+
 }
 
 /**************************************
@@ -43,7 +44,7 @@ void arrayWorking()
  *************************************/
 void arrayExploit()
 {
-   arrayVulnerability(-1);
+   arrayVulnerability(7);
 }
 
 /*******************************************
@@ -145,24 +146,69 @@ void stackVulnerability(string words) {
     */
 }
 
-void stackWorking() {
-    char *name = "Fort";
-    stackVulnerability(name);
+void stackWorking() 
+{
+    //char *name = "Fort";
+    //stackVulnerability(name);
 }
 
 void stackExploit() {
-    char *name = "Mackenzie";
-    stackVulnerability(name);
+    //char *name = "Mackenzie";
+    //stackVulnerability(name);
 }
+
+
+void unicodeVulnerability(short unicodeText[], int size)
+{
+
+    for(int i = 0; i < size - 1; i++)
+    {
+        unicodeText[i] = 0; // set the values to 0
+    }
+        int pass = 1;
+}
+
+void unicodeExploit()
+{
+    const int n = 2;
+    short unicodeText[n];
+    int pass = 1;
+    cout << "\nBefore Unicode-ANSI Exploit the pass variable = " << pass << endl;
+    unicodeVulnerability(unicodeText, sizeof(unicodeText));
+    cout << "After Unicode-ANSI Exploit the pass variable = " << pass << endl;
+
+}
+
+void unicodeWorking()
+{
+    const int n = 2;
+    short unicodeText[n];
+    int pass = 1;
+    cout << "\nVulnerability is fixed, pass = " << pass << " before running." << endl;
+    unicodeVulnerability(unicodeText, n);
+    cout << "Vulnerability is fixed, pass = " << pass << " after running as well." << endl;
+
+}
+
+
 
 // Driver code
 int main()
 {
 
+    cout << "\n----------------------------------";
+    cout << "\n--------Array Vulnerability-------";
+    cout << "\n----------------------------------\n";
     /* Array Index */
     arrayWorking();
     arrayExploit();
+    cout << "If the user is authenticated then the exploit worked.";
     /* INTEGER OVERFLOW */
+    cout << "\n----------------------------------";
+    cout << "\n--------Integer Overflow----------";
+    cout << "\n----------------------------------\n";
+
+
 
     int *res = new int[(sizeof(int))];
     int x = 2147483640;
@@ -173,7 +219,9 @@ int main()
 
 
     /* V_TABLE SPRAYING */
-
+    cout << "\n----------------------------------";
+    cout << "\n--------V_Table Spraying----------";
+    cout << "\n----------------------------------\n";
     // allocate memory on the heap for an object of class 'B',
     // then point to class A with it. The virtual function in
     // class 'A' will then be pointed to from that object. The
@@ -182,13 +230,24 @@ int main()
     b->foo();
     
     //ARC Vulnerability Driver
+    cout << "\n----------------------------------";
+    cout << "\n--------ARC Vulnerability---------";
+    cout << "\n----------------------------------\n";
     arcWorking();
     arcExploit();
     
     //Stack Smashing Driver
+    cout << "\n----------------------------------";
+    cout << "\n--------Stack Smashing------------";
+    cout << "\n----------------------------------\n";
     stackWorking();
     stackExploit();
 
+    cout << "\n----------------------------------";
+    cout << "\n--------Unicode_ANSI--------------";
+    cout << "\n----------------------------------\n";
+    unicodeExploit();
+    unicodeWorking();
 
     return 0;
 }
