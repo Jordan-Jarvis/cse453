@@ -3,7 +3,7 @@
 using namespace std;
 
 /*************************************
- * ARRAY VULNERABILTY
+ * ARRAY VULNERABILITY
  * 1. There must be an array and an array index variable
  * 2. The array index variable must be reachable through external input.
  * 3. There must not be bounds checking on the array index variable.
@@ -45,6 +45,41 @@ void arrayWorking()
 void arrayExploit()
 {
    arrayVulnerability(7);
+}
+
+/*********************************************
+ * Pointer Subterfuge
+ * ******************************************/
+void pointerSubterfuge(int bufindex, long addtobuf) {
+    long buffer[1];
+    char * p1 = "Computer";
+    char * p2 = "Security"; // the top secret password
+    
+    cout << "The p1 pointer points to: " << p1 << endl;
+    cout << "The buffer index " << bufindex
+         << " contains: " << buffer[bufindex] << endl;
+    
+    buffer[bufindex] = buffer[bufindex] + addtobuf; // actually referencing the pointer 'p1'
+    
+    cout << "The p1 pointer Now points to: " << p1 << endl;
+    cout << "The buffer index " << bufindex
+         << " now contains: " << buffer[bufindex] << endl;
+}
+
+/**************************************
+ * POINTER SUBTERFUGE WORKING
+ *************************************/
+void pointerWorking()
+{
+   pointerSubterfuge(0, 4);
+}
+
+/**************************************
+ * POINTER SUBTERFUGE EXPLOIT
+ **************************************/
+void pointerExploit()
+{
+   pointerSubterfuge(2, 9);
 }
 
 /*******************************************
@@ -190,6 +225,62 @@ void unicodeWorking()
 
 }
 
+/*************************************
+ * HEAP SPRAYING
+ * 1. There must be two adjacent heap buffers.
+ * 2. The first buffer must be reachable through external input.
+ * 3. The mechanism to fill the buffer from the external input must not
+      correctly check for the buffer size.
+ * 4. The second buffer must be released before the first.
+ * 5. The first buffer must be overrun (extend beyond the intended limits of
+    the array).
+ ****************************************/
+void heapVulnerability()//char &text)
+{
+    char * buffer1 = new char[4]; // requires two buffers on the heap
+    char * buffer2 = new char[4];
+    bool smashing = true;
+
+    strcpy(buffer1, "jojo");
+    strcpy(buffer2, "nono");
+    assert(buffer1 < buffer2);
+
+    //delete [] buffer2; // need to delete second buffer first
+
+    for (int i = 4; i < 5; i++)
+    {
+        buffer1[i] = 't';
+    }
+    delete [] buffer2;
+    cout << "Buffer: " << buffer1 << endl;
+
+    delete [] buffer1;
+}
+
+/**************************************
+ * HEAP WORKING
+ * heapWorking() that calls heapVulnerability()
+ * with non-malicious input.
+ *************************************/
+void heapWorking()
+{
+    char workingText[4] = "gun";
+   // heapVulnerability(workingText); // non malicious input
+}
+
+/**************************************
+ * HEAP EXPLOIT
+ * heapVulnerability() must be vulnerable to heap
+ * smashing but you will only be required to 
+ * demonstrate heap spraying.
+ *************************************/
+void heapExploit()
+{
+    char errorText[30] = "More than 10 characters";
+    //heapVulnerability(*errorText); // be vulnerable to heap smashing
+}
+
+
 
 
 // Driver code
@@ -200,7 +291,7 @@ int main()
     {
         cout << "\n\nPlease select an option and press enter.\n";
         cout << " 1 - Array Vulnerability\n";
-        cout << " 2 - IPointer Subterfuge\n";
+        cout << " 2 - Pointer Subterfuge\n";
         cout << " 3 - ARC Injection\n";
         cout << " 4 - VTable Spraying\n";
         cout << " 5 - Stack Smashing\n";
@@ -222,7 +313,15 @@ int main()
                 cout << "If the user is authenticated then the exploit worked.";
                 break;
             case '2':
-                //pointer subterfuge goes here
+                cout << "\n----------------------------------";
+                cout << "\n-Pointer Subterfuge Vulnerability-";
+                cout << "\n----------------------------------\n";
+                /* Pointer Subterfuge */
+                cout << "This is how a normal pointer works: " << endl; 
+                pointerWorking();
+                cout << endl;
+                cout << "This is how a pointer subterfuge exploit works: " << endl;
+                pointerExploit();
                 break;
             case '3':
                 cout << "\n----------------------------------";
@@ -251,7 +350,13 @@ int main()
                 stackExploit();
                 break;
             case '6':
-                // heap spraying goes here
+                cout << "\n----------------------------------";
+                cout << "\n--------Heap Vulnerability--------";
+                cout << "\n----------------------------------\n";
+                /* Heap Index */
+                heapWorking();
+                heapExploit();
+                heapVulnerability();
                 break;
             case '7':
                 cout << "\n----------------------------------";

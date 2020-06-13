@@ -46,4 +46,6 @@
         "typeinfo": "cpp",
         "iomanip": "cpp"
     }
+}    "extensions.ignoreRecommendations": true
+
 }
